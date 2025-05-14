@@ -39,7 +39,7 @@ VALUES
     (4, 'Jones', 'Sophia', '101 Pine Rd', 'Hillview'),
     (5, 'Garcia', 'Liam', '202 Birch Ln', 'Greenville');
 
--- Select rows
+-- Select rows (preferred option !)
 SELECT
   Persons.*
 FROM
@@ -56,3 +56,42 @@ WHERE
 --|       9|     Wilson|        Ava|       606 Ash Way|   Brookfield|
 --|      10|      Moore|      Lucas|    707 Cherry Cir|    Ridgewood|
 --+--------+-----------+-----------+------------------+-------------+
+
+
+-- Additional option with exists
+SELECT
+  *
+FROM
+  Persons
+WHERE NOT EXISTS (
+  SELECT
+    1
+  FROM
+    Persons1
+  WHERE Persons.PersonID = Persons1.PersonID
+)
+
+
+-- Additional option with IN
+SELECT
+  *
+FROM
+  Persons
+WHERE PersonID NOT IN (
+  SELECT
+    PersonID
+  FROM
+    Persons1
+)
+
+
+-- Additional option with EXCEPT
+SELECT
+  *
+FROM
+  Persons
+EXCEPT
+SELECT
+  *
+FROM
+  Persons1
