@@ -36,7 +36,7 @@ WITH purchases1_sum AS (
     SUM(purchase_amount) AS purchase_amount_sum
   FROM
     purchases1
-  GROUP by
+  GROUP BY
     FORMAT(purchase_date, 'yyyy-MM') -- or '%Y-%m' or DATE_FORMAT
 )
 
