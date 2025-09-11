@@ -1,3 +1,5 @@
+-- Create a query to display the IDs of users whose complaints came on the last day in the table and complaints from 
+-- these users were not received before this day
 CREATE TABLE Complaints (
   PersonID int,
   Complaint varchar(255),
