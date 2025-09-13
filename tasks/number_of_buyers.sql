@@ -1,4 +1,5 @@
 -- Count the number of buyers who buy different products
+
 -- Create tables and insert records
 CREATE TABLE Purchases (
   PersonID int,
