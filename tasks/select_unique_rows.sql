@@ -1,4 +1,5 @@
 -- Select rows from the second table that are not in the first.
+
 -- Create tables and insert records
 CREATE TABLE Persons (
   PersonID int,
