@@ -1,4 +1,5 @@
 -- ONE TABLE HAS DUPLICATE KEYS
+
 -- Create the table1 and insert records
 CREATE TABLE table1
 (
