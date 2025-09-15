@@ -1,4 +1,4 @@
--- Coding Question: SQL. find the 3-month rolling average of total revenue from purсhases given a table with users,
+-- Find the 3-month rolling average of total revenue from purсhases given a table with users,
 -- their purchase amount, and date purchases (YYYY-MM-DD).
 -- Output the year-month (YYYY-MM) and 3-month rolling average of revenue, sorted form earliest month to latest month.
 
