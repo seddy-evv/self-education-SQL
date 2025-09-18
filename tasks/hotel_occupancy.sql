@@ -6,7 +6,6 @@
 --
 --We need to display how many people were in the hotel by day.
 
-
 CREATE TABLE hotel(
   user_id INT,
   event_type varchar(255),
