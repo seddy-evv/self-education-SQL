@@ -1,1 +1,42 @@
 -- Query top 10/10% rows with limit and a custom logic
+
+CREATE TABLE Purchases (
+  PersonID int,
+  Product varchar(255),
+  City varchar(255)
+);
+
+INSERT INTO
+    Purchases
+VALUES
+    (1, 'Laptop', 'Springfield'),
+    (2, 'Smartphone', 'Riverside'),
+    (3, 'Tablet', 'Lakeside'),
+    (1, 'Laptop', 'Springfield'),
+    (2, 'Monitor', 'Greenville'),
+    (6, 'Keyboard', 'Sunnyvale'),
+    (7, 'Mouse', 'Fairview'),
+    (8, 'Smartwatch', 'Elmwood'),
+    (9, 'Camera', 'Brookfield'),
+    (3, 'Gaming Console', 'Ridgewood');
+
+-- Regular logic to select 5 rows from the table (you can add order if needed)
+SELECT TOP 5
+  *
+FROM
+  Purchases
+-- OR
+SELECT TOP 5
+  *
+FROM
+  Purchases
+LIMIT 5
+--+----------+--------------+--------------+
+--|  PersonID|       Product|          City|
+--+----------+--------------+--------------+
+--|         1|        Laptop|   Springfield|
+--|         2|    Smartphone|     Riverside|
+--|         3|        Tablet|      Lakeside|
+--|         1|        Laptop|   Springfield|
+--|         2|       Monitor|    Greenville|
+--+----------+--------------+--------------+
