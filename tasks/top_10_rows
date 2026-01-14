@@ -20,7 +20,7 @@ VALUES
     (9, 'Camera', 'Brookfield'),
     (3, 'Gaming Console', 'Ridgewood');
 
--- Regular logic to select 5 rows from the table (you can add order if needed)
+-- 1. Regular logic to select 5 rows from the table (you can add order if needed)
 SELECT TOP 5
   *
 FROM
@@ -40,3 +40,27 @@ LIMIT 5
 --|         1|        Laptop|   Springfield|
 --|         2|       Monitor|    Greenville|
 --+----------+--------------+--------------+
+
+-- 2. Custom logic to select 5 rows
+WITH Purchases_rows AS (
+  SELECT
+    *,
+    ROW_NUMBER() OVER (ORDER BY(SELECT 1)) AS row_nmbr
+  FROM
+    Purchases
+)
+SELECT
+  *
+FROM
+  Purchases_rows
+WHERE
+  row_nmbr <= 5
+--+----------+--------------+--------------+---------+
+--|  PersonID|       Product|          City| row_nmbr|
+--+----------+--------------+--------------+---------+
+--|         1|        Laptop|   Springfield|        1|
+--|         2|    Smartphone|     Riverside|        2|
+--|         3|        Tablet|      Lakeside|        3|
+--|         1|        Laptop|   Springfield|        4|
+--|         2|       Monitor|    Greenville|        5|
+--+----------+--------------+--------------+---------+
