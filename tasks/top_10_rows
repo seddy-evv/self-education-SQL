@@ -26,7 +26,7 @@ SELECT TOP 5
 FROM
   Purchases
 -- OR
-SELECT TOP 5
+SELECT
   *
 FROM
   Purchases
@@ -64,3 +64,18 @@ WHERE
 --|         1|        Laptop|   Springfield|        4|
 --|         2|       Monitor|    Greenville|        5|
 --+----------+--------------+--------------+---------+
+
+-- 3. Query 30% of rows
+SELECT
+  *
+FROM
+  (
+    SELECT
+      t.*,
+      ROW_NUMBER() OVER (ORDER BY PersonID) AS rn,
+      COUNT(*) OVER () AS total
+    FROM
+      Purchases t
+  ) s
+WHERE
+  rn <= CAST((total * 0.30) AS INT)
