@@ -79,3 +79,18 @@ FROM
   ) s
 WHERE
   rn <= CAST((total * 0.30) AS INT)
+-- OR with LIMIT
+WITH total AS (
+  SELECT
+    COUNT(*) AS n
+  FROM
+    Purchases
+)
+SELECT
+  t.*
+FROM
+  Purchases t,
+  total
+ORDER BY
+  PersonID
+LIMIT CAST((total.n * 0.10) AS INT)
