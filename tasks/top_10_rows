@@ -94,3 +94,10 @@ FROM
 ORDER BY
   PersonID
 LIMIT CAST((total.n * 0.10) AS INT)
+--+----------+--------------+--------------+---------+---------+
+--|  PersonID|       Product|          City| row_nmbr| row_nmbr|
+--+----------+--------------+--------------+---------+---------+
+--|         1|        Laptop|   Springfield|        1|       10|
+--|         1|        Laptop|   Springfield|        2|       10|
+--|         2|    Smartphone|     Riverside|        3|       10|
+--+----------+--------------+--------------+---------+---------+
