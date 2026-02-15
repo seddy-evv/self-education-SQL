@@ -21,3 +21,17 @@
     (0, 1, '2025-10-11', 'XGB'),
     (1, 1, '2025-10-12', 'XGB'),
     (1, 0, '2025-10-13', 'XGB');
+
+-- PIVOT
+WITH confusion_matrix AS (
+  SELECT
+    model,
+    CASE WHEN (prediction = 1 AND actual = 1) THEN'TP'
+      WHEN (prediction = 1 AND actual = 0) THEN 'FP'
+      WHEN (prediction = 0 AND actual = 1) THEN 'FN'
+      WHEN (prediction = 0 AND actual = 0) THEN 'TN'
+      ELSE NULL
+    END AS confusion
+  FROM
+    predictions
+)
