@@ -35,3 +35,20 @@ WITH confusion_matrix AS (
   FROM
     predictions
 )
+-- Databricks SQL
+SELECT
+  *
+FROM
+  (
+    SELECT
+      model,
+      confusion
+    FROM
+      confusion_matrix
+  )
+    PIVOT (count(confusion) FOR confusion IN ('TP' AS TP, 'FP' AS FP, 'TN' AS TN, 'FN' AS FN))
+--+----------+-------+------+------+------+
+--|     model|     TP|    FP|    TN|    FN|
+--+----------+-------+------+------+------+
+--|       XGB|      3|     5|     2|     3|
+--+----------+-------+------+------+------+
