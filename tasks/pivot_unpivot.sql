@@ -52,3 +52,16 @@ FROM
 --+----------+-------+------+------+------+
 --|       XGB|      3|     5|     2|     3|
 --+----------+-------+------+------+------+
+
+-- MS SQL
+SELECT model, [TP], [FP], [TN], [FN]
+FROM
+(
+    SELECT model, confusion
+    FROM confusion_matrix
+) AS SourceTable
+PIVOT
+(
+    COUNT(confusion)
+    FOR confusion IN ([TP], [FP], [TN], [FN])
+) AS PivotTable;
