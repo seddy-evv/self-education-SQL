@@ -65,3 +65,19 @@ PIVOT
     COUNT(confusion)
     FOR confusion IN ([TP], [FP], [TN], [FN])
 ) AS PivotTable;
+
+-- CUSTOM LOGIC WITHOUT PIVOT
+SELECT
+  model,
+  SUM (CASE WHEN (prediction = 1 AND actual = 1) THEN 1 ELSE 0 END) AS TP,
+  SUM (CASE  WHEN (prediction = 1 AND actual = 0) THEN 1 ELSE 0 END) AS FP,
+  SUM (CASE  WHEN (prediction = 0 AND actual = 1) THEN 1 ELSE 0 END) AS FN,
+  SUM ( CASE  WHEN (prediction = 0 AND actual = 0) THEN 1 ELSE 0 END) AS TN
+FROM
+  predictions
+GROUP BY model
+--+----------+-------+------+------+------+
+--|     model|     TP|    FP|    TN|    FN|
+--+----------+-------+------+------+------+
+--|       XGB|      3|     5|     2|     3|
+--+----------+-------+------+------+------+
