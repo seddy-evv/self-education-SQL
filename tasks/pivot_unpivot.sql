@@ -96,3 +96,21 @@ FROM
   predictions
 GROUP BY model
 )
+-- Databricks SQL
+SELECT
+  *
+FROM
+  pivot_table
+    UNPIVOT INCLUDE NULLS
+    (val FOR confusion IN (TP AS `TP`,
+                          FP AS `FP`,
+                          FN AS `FN`,
+                          TN AS `TN`));
+--+----------+----------+------+
+--|     model| confusion|   val|
+--+----------+----------+------+
+--|       XGB|        TP|     3|
+--|       XGB|        FP|     5|
+--|       XGB|        FN|     3|
+--|       XGB|        TN|     2|
+--+----------+----------+------+
