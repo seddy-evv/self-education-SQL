@@ -114,3 +114,14 @@ FROM
 --|       XGB|        FN|     3|
 --|       XGB|        TN|     2|
 --+----------+----------+------+
+
+-- MS SQL
+SELECT model, confusion, val
+FROM (
+    SELECT model, TP, FP, FN, TN
+    FROM pvt
+) p
+UNPIVOT
+(
+    val FOR confusion IN (TP, FP, FN, TN)
+) AS unpvt;
